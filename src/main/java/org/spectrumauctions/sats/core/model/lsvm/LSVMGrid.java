@@ -9,6 +9,7 @@ import org.spectrumauctions.sats.core.util.random.UniformDistributionRNG;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -89,13 +90,13 @@ public class LSVMGrid implements Serializable {
     }
 
     HashSet<LSVMLicense> getProximity(LSVMLicense center, int proximitySize) {
-        HashSet<LSVMLicense> proximity = new HashSet<>();
+        HashSet<LSVMLicense> proximity = new LinkedHashSet<>();
         proximity.add(center);
         Set<LSVMLicense> tmp = expand(proximity, center);
         // Expand step by step
         for (int i = 0; i < proximitySize; i++) {
             proximity.addAll(tmp);
-            Set<LSVMLicense> tmp2 = new HashSet<>();
+            Set<LSVMLicense> tmp2 = new LinkedHashSet<>();
             for (LSVMLicense license : tmp) {
                 tmp2.addAll(expand(proximity, license));
             }
@@ -106,7 +107,7 @@ public class LSVMGrid implements Serializable {
 
     private Set<LSVMLicense> expand(Set<LSVMLicense> proximity, LSVMLicense license) {
 
-        Set<LSVMLicense> newLicenses = new HashSet<>();
+        Set<LSVMLicense> newLicenses = new LinkedHashSet<>();
         // Add top neighbor if not in first row
         if (license.getRowPosition() > 0) {
             // Only add if not added yet
