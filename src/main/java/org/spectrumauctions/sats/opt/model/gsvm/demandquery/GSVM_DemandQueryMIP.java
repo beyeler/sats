@@ -82,7 +82,7 @@ public class GSVM_DemandQueryMIP implements NonGenericDemandQueryMIP<GSVMLicense
         }
 
         gsvmMip.getMip().setSolveParam(SolveParam.SOLUTION_POOL_CAPACITY, numberOfResults);
-        gsvmMip.getMip().setSolveParam(SolveParam.SOLUTION_POOL_MODE, 4);
+        gsvmMip.getMip().setSolveParam(SolveParam.SOLUTION_POOL_MODE, 3);
         gsvmMip.getMip().setAdvancedVariablesOfInterest(variableSetsOfInterest);
 
         IMIPResult mipResult = solver.solve(gsvmMip.getMip());
