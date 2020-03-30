@@ -214,7 +214,7 @@ public class NonGenericCCAMechanism<T extends Good> extends CCAMechanism<T> {
                         XORBid.Builder<T> xorBidBuilder = new XORBid.Builder<>(bidder, bids.get(bidder).getValues());
                         BigDecimal bid = bundle.stream().map(currentPrices::get).reduce(BigDecimal.ZERO, BigDecimal::add);
                         XORValue<T> existing = xorBidBuilder.containsBundle(bundle);
-                        if (existing != null && existing.value().compareTo(bid) < 1) {
+                        if (existing != null && existing.value().compareTo(bid) < 0) {
                             xorBidBuilder.removeFromBid(existing);
                         }
                         if (existing == null || existing.value().compareTo(bid) < 0) {
